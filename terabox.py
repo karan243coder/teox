@@ -140,7 +140,7 @@ def get_data(url: str):
         "Connection": "keep-alive",
         "Cookie": COOKIE,
         "DNT": "1",
-        "Host": "www.terabox.app",
+        "Host": "www.terabox.club",
         "Sec-Fetch-Dest": "document",
         "Sec-Fetch-Mode": "navigate",
         "Sec-Fetch-Site": "none",
