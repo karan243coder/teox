@@ -156,22 +156,31 @@ def get_data(url: str):
 
     response = r.get(reqUrl, data=payload, headers=headersList)
 
-    if not response.status_code == 200:
+    if response.status_code != 200:
+        print("Error: Failed to fetch data. Status code:", response.status_code)
         return False
+
     r_j = response.json()
-    if r_j["errno"]:
+    if r_j.get("errno"):
+        print(f"Error: Response contains errno {r_j['errno']}")
         return False
-    if not "list" in r_j and not r_j["list"]:
+
+    if "list" not in r_j or not r_j["list"]:
+        print("Error: 'list' key is missing or empty in the response JSON.")
+        return False
+
+    if not r_j["list"][0].get("dlink"):
+        print("Error: 'dlink' key is missing in the first item of 'list'.")
         return False
 
     response = r.head(r_j["list"][0]["dlink"], headers=headersList)
     direct_link = response.headers.get("location")
     data = {
-        "file_name": r_j["list"][0]["server_filename"],
+        "file_name": r_j["list"][0].get("server_filename", "Unknown"),
         "link": r_j["list"][0]["dlink"],
         "direct_link": direct_link,
-        "thumb": r_j["list"][0]["thumbs"]["url3"],
-        "size": get_formatted_size(int(r_j["list"][0]["size"])),
-        "sizebytes": int(r_j["list"][0]["size"]),
+        "thumb": r_j["list"][0].get("thumbs", {}).get("url3", ""),
+        "size": get_formatted_size(int(r_j["list"][0].get("size", 0))),
+        "sizebytes": int(r_j["list"][0].get("size", 0)),
     }
     return data
