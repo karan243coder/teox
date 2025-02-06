@@ -7,10 +7,10 @@ API_HASH = environ.get("API_HASH", "c05481978a217fdb11fa6774b15cba32")  # api ha
 BOT_TOKEN = environ.get("BOT_TOKEN", "7570624605:AAEKloG33NWL5EGkfwS0-5UyRVl3BjAhZRY")  # bot token
 
 # REDIS
-REDIS_HOST = environ.get("REDIS_HOST", "redis-14170.c309.us-east-2-1.ec2.redns.redis-cloud.com")  # redis host uri
-REDIS_PORT = environ.get("REDIS_PORT", 14170)  # redis port
+REDIS_HOST = environ.get("REDIS_HOST", "redis-18689.c85.us-east-1-2.ec2.redns.redis-cloud.com")  # redis host uri
+REDIS_PORT = environ.get("REDIS_PORT", 18689)  # redis port
 REDIS_PASSWORD = environ.get(
-    "REDIS_PASSWORD", "CtOceSG35B2flDiOVB8Q33vm4viuF1EQ"
+    "REDIS_PASSWORD", "5bQedh5WnTg24cMb1DGeRjy1vQxT1cBx"
 )  # redis password
 
 
